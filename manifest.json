@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "Chess You Can Hear",
+	"version": "1.0",
+
+	"description": "Adds sound effects that reflect the current chess game being played on lichess.org",
+
+	/*
+	"page_action": {
+		"default_icon": "",
+	},
+	*/
+
+	"content_scripts": [{
+		"matches": ["https://lichess.org/"],
+		"js": ["p5.js", "mainExtension.js"]
+	}]
+}

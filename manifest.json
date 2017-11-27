@@ -6,13 +6,13 @@
 	"description": "Adds sound effects that reflect the current chess game being played on lichess.org",
 
 	/*
-	"page_action": {
+	"browser_action": {
 		"default_icon": "",
 	},
 	*/
 
 	"content_scripts": [{
-		"matches": ["https://lichess.org/"],
+		"matches": ["https://*.lichess.org/*"],
 		"js": ["p5.js", "mainExtension.js"]
 	}]
 }

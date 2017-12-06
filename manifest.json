@@ -9,6 +9,10 @@
 		"default_icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Chess_tile_kl.svg/2000px-Chess_tile_kl.svg.png",
 		"default_title": "Chess You Can Hear"
 	},
+	
+	"background": {
+      "scripts": ["background.js"]
+  	},
 
 	"content_scripts": [{
 		"matches": [

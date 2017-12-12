@@ -6,7 +6,7 @@
 	"description": "Adds sound effects that reflect the current chess game being played on lichess.org",
 
 	"browser_action": {
-		"default_icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Chess_tile_kl.svg/2000px-Chess_tile_kl.svg.png",
+		"default_icon": "chess_icon.png",
 		"default_title": "Chess You Can Hear"
 	},
 	

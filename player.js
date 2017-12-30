@@ -8,35 +8,33 @@ var check = false;
 
 var boardObserver = new MutationObserver(function(mutations) {
 
-
-	/****** CHECKING FOR CHECKS OR TAKES *****/
-
-	console.log(mutations.length);
-	
-	if (mutations.length == 3) {
-		if (mutations[2].target.className == 'cg-board' && mutations[2].target.removedNodes.length > 0) {
-			take = true;
-		}
-		else if (mutations[2].target.className == 'cg-board' && mutations[2].target.removedNodes.length > 0) {
-			check = true;
-		}
-	}
-	else {
-		take = false;
-		check = false;
-	}
-
-	/****** IDENTIFYING THE MOVE *****/
-
 	mutations.forEach(function(mutation) {
 
 		var mutationTarget = mutation.target;		//Makes things simpler when I want to reference the target of the Node
 
-		if (mutationTarget.className == 'last-move' && mutationTarget.clientHeight == 64) {			//attributes (moving peices (comes in pairs of two))
-			console.log(mutationTarget.attributes.style);
-			console.log(take);
-			console.log(check);
+		/****** CHECKING FOR CHECKS OR TAKES *****/
+
+		// if (mutationTarget.className == 'cg-board') {
+		// 	console.log(mutation);
+		// 	console.log(mutation.addedNodes);
+		// 	console.log(mutation.addedNodes.length);
+		// }
+
+		if (mutationTarget.className == 'cg-board' && mutation.removedNodes.length > 0) {
+			take = true;
 		}
+		else { take = false; }
+
+		if (mutationTarget.className == 'cg-board' && mutation.addedNodes.length > 0) {
+			check = true;
+		}
+		else {check = false; }
+
+		/****** IDENTIFYING THE MOVE *****/
+
+		// if (mutationTarget.className == 'last-move' && mutationTarget.clientHeight == 64) {			//attributes (moving peices (comes in pairs of two))
+		// 	//console.log(mutationTarget.attributes.style);
+		// }
 
 		// if (mutationTarget.className == "moves") {		//Only care about mutations that are moves on the board
 			
@@ -47,6 +45,8 @@ var boardObserver = new MutationObserver(function(mutations) {
 		// 	console.log(moveArray[moveArray.length-2].innerText);
 		// }
 	});
+	if (check) { console.log("CHECK!"); }
+	if (take) { console.log("TAKE!"); }
 });
 
 boardObserver.observe(document.documentElement, {

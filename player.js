@@ -27,8 +27,9 @@ var boardObserver = new MutationObserver(function(mutations) {
 
 		if (mutationTarget.className == 'cg-board' && mutation.addedNodes.length > 0) {
 			check = true;
+			console.log(mutation);
 		}
-		else {check = false; }
+		else { check = false; }
 
 		/****** IDENTIFYING THE MOVE *****/
 

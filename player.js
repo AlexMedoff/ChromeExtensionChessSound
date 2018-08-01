@@ -12,14 +12,7 @@ var boardObserver = new MutationObserver(function(mutations) {
 
 		var mutationTarget = mutation.target;		//Makes things simpler when I want to reference the target of the Node
 
-		/****** CHECKING FOR CHECKS OR TAKES *****/
-
-		// if (mutationTarget.className == 'cg-board') {
-		// 	console.log(mutation);
-		// 	console.log(mutation.addedNodes);
-		// 	console.log(mutation.addedNodes.length);
-		// }
-
+		/********* CHECKS AND TAKES ********/
 		if (mutationTarget.className == 'cg-board' && mutation.removedNodes.length > 0) {
 			take = true;
 		}
@@ -31,18 +24,17 @@ var boardObserver = new MutationObserver(function(mutations) {
 		}
 		else { check = false; }
 
-		/****** IDENTIFYING THE MOVE *****/
 
-		// if (mutationTarget.className == 'last-move' && mutationTarget.clientHeight == 64) {			//attributes (moving peices (comes in pairs of two))
-		// 	//console.log(mutationTarget.attributes.style);
-		// }
+		/****** IDENTIFYING THE MOVE *****/
+		if (mutationTarget.className == 'last-move' && mutationTarget.clientHeight == 64) {			//attributes (moving peices (comes in pairs of two))
+			//console.log(mutationTarget.attributes.style);
+			console.log(mutation);
+		}
 
 		// if (mutationTarget.className == "moves") {		//Only care about mutations that are moves on the board
 			
 		// 	//console.log(mutation);
-
 		// 	var moveArray = mutationTarget.childNodes;
-
 		// 	console.log(moveArray[moveArray.length-2].innerText);
 		// }
 	});

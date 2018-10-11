@@ -19,6 +19,8 @@
 			"https://*.lichess.org/*",
 			"http://*.lichess.org/*"
 		],
-		"js": ["player.js"]
-	}]
+		"js": ["sounds.js", "player.js"]
+	}],
+
+	"web_accessible_resources": [ "*.mp3" ]
 }

@@ -1,13 +1,25 @@
 //var take = false;
 //var check = false;
 
-var pieceType;
-var color;
+var pieceType;		//variable that holds the name of the piece
+var color;			//either black or white
 
-var latestMove = new Move();
-var main_counter = 0;
+var latestMove = new Move();		//each move is held in a Move object
+var main_counter = 0;				//Counter used for process of getting all info on a move
 
-var counter = 0;
+var counter = 0;					//Another counter used for getting info on moves
+
+///********* THESE ARRAYS HOLD THE ACTUAL Audio OBJECTS TO PLAY SOUNDS ********//
+
+var sevenChords = [c7, ab7, d7, f7, g7];
+var augChords = [baug, caug, daug, ebaug, fsaug];
+var dimChords = [abdim, bbdim, cdim, ddim, ebdim];
+var majChords = [amaj, bmaj, cmaj, dmaj, emaj, fmaj, gmaj];
+var minChords = [bbmin, csmin, bmin, cmin, gmin, emin];
+var singleNotes = [cnote, csnote, dnote, dsnote, enote, fnote, fsnote, gnote, gsnote, anote, asnote, bnote];
+
+
+//******* THESE ARRAYS ARE REMNANTS OF EARLIER TESTING **********/
 
 var majorChords = ["AMajor", "CMajor", "DMajor", "EMajor", "GMajor"];
 var diminishedChords = ["ADim", "CDim", "BDim"];
@@ -25,7 +37,7 @@ var boardObserver = new MutationObserver(function(mutations) {
 
 		var mutationTarget = mutation.target;		//Makes things simpler when I want to reference the target of the Node
 
-			/******* CHECKS AND TAKES *****/
+		/******* CHECKS AND TAKES *****/
 		if (counter == 1) {
 			if (mutationTarget.className == 'cg-board' && mutation.addedNodes.length > 0 && mutation.addedNodes[0].className == "check") {
 				//check = true;
@@ -38,7 +50,7 @@ var boardObserver = new MutationObserver(function(mutations) {
 				//console.log("take");
 			}	
 			else if (main_counter >= 5) {
-				console.log(latestMove);
+				//console.log(latestMove);
 				latestMove.determineChord();
 				latestMove = new Move();
 				counter = 0;
@@ -53,8 +65,8 @@ var boardObserver = new MutationObserver(function(mutations) {
 				var stringArr = mutationTarget.className.split(" ");
 				color = stringArr[0];
 				pieceType = stringArr[1];
-				console.log("The color is " + color);
-				console.log("The piece is " + pieceType);
+				//console.log("The color is " + color);
+				//console.log("The piece is " + pieceType);
 				latestMove.setColor(color);
 				latestMove.setPiece(pieceType);
 				if (color == "white") {
@@ -62,7 +74,7 @@ var boardObserver = new MutationObserver(function(mutations) {
 					counter = 1;	
 				}
 				else {
-					console.log(latestMove);
+					//console.log(latestMove);
 					latestMove.determineChord();
 					latestMove = new Move();
 				}
@@ -93,33 +105,44 @@ function Move() {
 	this.setPiece = function(i_piece) { this.pieceM = i_piece; }
 	this.setColor = function(i_color) { this.colorM = i_color; }
 
+
+	//The following function completes the algorithmic process of determining which chords should be played for which move...
+
 	this.determineChord = function() {
 		if (this.colorM == "black") {
 			if (this.pieceM == "pawn") {
-				console.log(oneNote[Math.floor(Math.random() * oneNote.length)]);
+				//console.log(oneNote[Math.floor(Math.random() * oneNote.length)]);
+				singleNotes[Math.floor(Math.random() * singleNotes.length)].play();
 			}
 			else if (this.pieceM == "queen") {
-				console.log(minorChords[Math.floor(Math.random() * minorChords.length)]);
+				//console.log(diminishedChords[Math.floor(Math.random() * diminishedChords.length)]);
+				dimChords[Math.floor(Math.random() * dimChords.length)].play();
 			}
 			else {
-				console.log(diminishedChords[Math.floor(Math.random() * diminishedChords.length)]);
+				//console.log(minorChords[Math.floor(Math.random() * minorChords.length)]);
+				minChords[Math.floor(Math.random() * minChords.length)].play();
 			}
 		}
 		else {
 			if (this.takeM & !this.checkM) {
-				console.log(augmentedChords[Math.floor(Math.random() * augmentedChords.length)]);
+				//console.log(augmentedChords[Math.floor(Math.random() * augmentedChords.length)]);
+				augChords[Math.floor(Math.random() * augChords.length)].play();
 			}
 			else if (this.checkM & !this.takeM) {
-				console.log(diminishedChords[Math.floor(Math.random() * diminishedChords.length)]);
+				//console.log(diminishedChords[Math.floor(Math.random() * diminishedChords.length)]);
+				dimChords[Math.floor(Math.random() * dimChords.length)].play();
 			}
 			else if (this.checkM & this.takeM) {
-				console.log(majorSeven[Math.floor(Math.random() * majorSeven.length)])
+				//console.log(majorSeven[Math.floor(Math.random() * majorSeven.length)]);
+				sevenChords[Math.floor(Math.random() * sevenChords.length)].play();
 			}
 			else if (this.pieceM == "pawn") {
-				console.log(oneNote[Math.floor(Math.random() * oneNote.length)]);
+				//console.log(oneNote[Math.floor(Math.random() * oneNote.length)]);
+				singleNotes[Math.floor(Math.random() * singleNotes.length)].play();
 			}
 			else {
-				console.log(majorChords[Math.floor(Math.random() * majorChords.length)]);
+				//console.log(majorChords[Math.floor(Math.random() * majorChords.length)]);
+				majChords[Math.floor(Math.random() * majChords.length)].play();
 			}
 		}
 	}

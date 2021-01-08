@@ -18,3 +18,20 @@ winning, losing, waiting, etc...). I associated all of these "moods" with a part
 trying my best to ensure that the unique sound of the chord would properly reflect the feeling of the game.
 So, for example, if the player takes an opponent's piece, they will hear a happy major triad, but if their
 opponent takes one of their pieces, a minor triad will sound to reflect anger or sadness.
+
+In total, the program uses 35+ different sounds, spanning all 12 musical keys. Below I will list the 5
+different types of chords you may hear using this extension:
+
+Major Triads
+Minor Triads
+Diminished Triads
+Augmented Triads
+Dominant 7th Chords
+Single Notes (these aren't chords, but I figured single notes reflect simple and inconsequential moves)
+
+**Link To Watch Youtube Video Example of This in Action**
+
+So that you may quickly see how this program works without having to setup an online chess account,
+here is a link to a short youtube video showcasing this extension in action:
+
+https://youtu.be/Z5qQirJoLjA
